@@ -11,17 +11,19 @@ describe("Persistent Node Chat Server", function() {
   beforeEach(function(done) {
     dbConnection = mysql.createConnection({
       // TODO: Fill this out with your mysql username
-      user: "alex",
+      user: "alexkia",
       // and password.
-      password: "alex",
+      password: "alexkia",
       database: "chat"
     });
+    console.log('about to connect');
     dbConnection.connect();
 
-    var tablename = ""; // TODO: fill this out
+    var tablename = "messagesTable"; // TODO: fill this out
 
     /* Empty the db table before each test so that multiple tests
      * (or repeated runs of the tests) won't screw each other up: */
+     console.log('about to query');
     dbConnection.query("truncate " + tablename, done);
   });
 
@@ -29,7 +31,9 @@ describe("Persistent Node Chat Server", function() {
     dbConnection.end();
   });
 
+
   it("Should insert posted messages to the DB", function(done) {
+    console.log('INSIDE 1ST TEST');
     // Post a message to the node chat server:
     request({method: "POST",
              uri: "http://127.0.0.1:3000/classes/messages",

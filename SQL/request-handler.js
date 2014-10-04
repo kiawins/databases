@@ -24,9 +24,9 @@ exports.postMessage = function(req, res) {
       });
   };
 
-  parseData(req, function(_, msg) {
+  serverHelpers.collectData(req, function(_, msg) {
       message = msg;
-      findUser(msg.username, function (err, results) {
+      db.findUser(msg.username, function (err, results) {
         // no results/0 results
         if (!results || !results.length) {
           // create the user, then post the message
