@@ -11,9 +11,9 @@ describe("Persistent Node Chat Server", function() {
   beforeEach(function(done) {
     dbConnection = mysql.createConnection({
       // TODO: Fill this out with your mysql username
-      user: "",
+      user: "alex",
       // and password.
-      password: "",
+      password: "alex",
       database: "chat"
     });
     dbConnection.connect();

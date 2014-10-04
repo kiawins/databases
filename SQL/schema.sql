@@ -1,20 +1,33 @@
+DROP DATABASE IF EXISTS chat;
+
 CREATE DATABASE chat;
 
 USE chat;
 
-CREATE TABLE messages (
-  /* Describe your table here.*/
+DROP TABLE IF EXISTS chatroomTable;
+DROP TABLE IF EXISTS userTable;
+DROP TABLE IF EXISTS messageTable;
+
+CREATE TABLE userTable (
+  id int(10) not null auto_increment,
+  messages int(10),
+  name varchar(64),
+  primary key(ID)
 );
 
-/* Create other tables and define schemas for them here! */
+CREATE TABLE messagesTable (
+  id int(10) not null auto_increment,
+  dateCreated DATETIME(6),
+  message text(255),
+  user int,
+  primary key(ID),
+  foreign key(user) references userTable(ID)
+);
 
-
-
-
-/*  Execute this file from the command line by typing:
- *    mysql < schema.sql
- *  to create the database and the tables.*/
-
-
-
-
+CREATE TABLE chatroomTable (
+  id int(10) not null auto_increment,
+  messages int,
+  name varchar(64),
+  primary key(ID),
+  foreign key(messages) references messagesTable(ID)
+);
